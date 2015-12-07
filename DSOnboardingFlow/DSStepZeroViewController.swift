@@ -10,18 +10,18 @@ import UIKit
 
 class DSStepZeroViewController: UIViewController {
     
-    lazy var imageView: UIImageView! = {
-        let view = UIImageView(frame: CGRectZero)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.image = UIImage(named: "Smile")
-        
-        return view
-    }()
+//    lazy var imageView: UIImageView! = {
+//        let view = UIImageView(frame: CGRectZero)
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.image = UIImage(named: "Smile")
+//        
+//        return view
+//    }()
     
     lazy var bigTextView: UILabel! = {
         let view = UILabel(frame: CGRectZero)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = "Hey Girl"
+        view.text = "Welcome!"
         view.textColor = UIColor.whiteColor()
         view.textAlignment = .Center
         view.font = UIFont(name: "Helvetica Neue", size: 37.0)
@@ -46,9 +46,9 @@ class DSStepZeroViewController: UIViewController {
         
         self.view.backgroundColor = UIColor.clearColor()
         
-        self.view.addSubview(imageView)
+        //self.view.addSubview(imageView)
         self.view.addSubview(bigTextView)
-        self.view.addSubview(smallTextView)
+        //self.view.addSubview(smallTextView)
         
         self.view.setNeedsUpdateConstraints()
     
@@ -56,49 +56,49 @@ class DSStepZeroViewController: UIViewController {
     
     override func updateViewConstraints() {
         
-        imageViewConstraints()
+        //imageViewConstraints()
         bigTextViewConstraints()
-        smallTextViewConstraints()
+        //smallTextViewConstraints()
         super.updateViewConstraints()
     }
     
-    func imageViewConstraints() {
-        self.view.addConstraint(NSLayoutConstraint(
-            item: imageView,
-            attribute: .CenterX,
-            relatedBy: .Equal,
-            toItem: self.view,
-            attribute: .CenterX,
-            multiplier: 1.0,
-            constant: 0))
-        
-        self.view.addConstraint(NSLayoutConstraint(
-            item: imageView,
-            attribute: .Height,
-            relatedBy: .Equal,
-            toItem: imageView,
-            attribute: .Width,
-            multiplier: 1.0,
-            constant: 0))
-        
-        self.view.addConstraint(NSLayoutConstraint(
-            item: imageView,
-            attribute: .Width,
-            relatedBy: .Equal,
-            toItem: self.view,
-            attribute: .Width,
-            multiplier: 0.5,
-            constant: 0))
-        
-        self.view.addConstraint(NSLayoutConstraint(
-            item: imageView,
-            attribute: .CenterY,
-            relatedBy: .Equal,
-            toItem: self.view,
-            attribute: .CenterY,
-            multiplier: 1.0,
-            constant: 0))
-    }
+//    func imageViewConstraints() {
+//        self.view.addConstraint(NSLayoutConstraint(
+//            item: imageView,
+//            attribute: .CenterX,
+//            relatedBy: .Equal,
+//            toItem: self.view,
+//            attribute: .CenterX,
+//            multiplier: 1.0,
+//            constant: 0))
+//        
+//        self.view.addConstraint(NSLayoutConstraint(
+//            item: imageView,
+//            attribute: .Height,
+//            relatedBy: .Equal,
+//            toItem: imageView,
+//            attribute: .Width,
+//            multiplier: 1.0,
+//            constant: 0))
+//        
+//        self.view.addConstraint(NSLayoutConstraint(
+//            item: imageView,
+//            attribute: .Width,
+//            relatedBy: .Equal,
+//            toItem: self.view,
+//            attribute: .Width,
+//            multiplier: 0.5,
+//            constant: 0))
+//        
+//        self.view.addConstraint(NSLayoutConstraint(
+//            item: imageView,
+//            attribute: .CenterY,
+//            relatedBy: .Equal,
+//            toItem: self.view,
+//            attribute: .CenterY,
+//            multiplier: 1.0,
+//            constant: 0))
+//    }
     
     func bigTextViewConstraints() {
         self.view.addConstraint(NSLayoutConstraint(
@@ -132,50 +132,50 @@ class DSStepZeroViewController: UIViewController {
             item: bigTextView,
             attribute: .Top,
             relatedBy: .Equal,
-            toItem: imageView,
+            toItem: self.view,
             attribute: .Bottom,
-            multiplier: 1.0,
-            constant: 40))
+            multiplier: 0.6,
+            constant: 0))
     }
     
-    func smallTextViewConstraints() {
-        
-        self.view.addConstraint(NSLayoutConstraint(
-            item: smallTextView,
-            attribute: .CenterX,
-            relatedBy: .Equal,
-            toItem: self.view,
-            attribute: .CenterX,
-            multiplier: 1.0,
-            constant: 0))
-        
-        self.view.addConstraint(NSLayoutConstraint(
-            item: smallTextView,
-            attribute: .Height,
-            relatedBy: .Equal,
-            toItem: nil,
-            attribute: .NotAnAttribute,
-            multiplier: 1.0,
-            constant: 60))
-        
-        self.view.addConstraint(NSLayoutConstraint(
-            item: smallTextView,
-            attribute: .Width,
-            relatedBy: .Equal,
-            toItem: self.view,
-            attribute: .Width,
-            multiplier: 0.8,
-            constant: 0))
-        
-        self.view.addConstraint(NSLayoutConstraint(
-            item: smallTextView,
-            attribute: .Top,
-            relatedBy: .Equal,
-            toItem: bigTextView,
-            attribute: .Bottom,
-            multiplier: 1.0,
-            constant: 10))
-    }
+//    func smallTextViewConstraints() {
+//        
+//        self.view.addConstraint(NSLayoutConstraint(
+//            item: smallTextView,
+//            attribute: .CenterX,
+//            relatedBy: .Equal,
+//            toItem: self.view,
+//            attribute: .CenterX,
+//            multiplier: 1.0,
+//            constant: 0))
+//        
+//        self.view.addConstraint(NSLayoutConstraint(
+//            item: smallTextView,
+//            attribute: .Height,
+//            relatedBy: .Equal,
+//            toItem: nil,
+//            attribute: .NotAnAttribute,
+//            multiplier: 1.0,
+//            constant: 60))
+//        
+//        self.view.addConstraint(NSLayoutConstraint(
+//            item: smallTextView,
+//            attribute: .Width,
+//            relatedBy: .Equal,
+//            toItem: self.view,
+//            attribute: .Width,
+//            multiplier: 0.8,
+//            constant: 0))
+//        
+//        self.view.addConstraint(NSLayoutConstraint(
+//            item: smallTextView,
+//            attribute: .Top,
+//            relatedBy: .Equal,
+//            toItem: bigTextView,
+//            attribute: .Bottom,
+//            multiplier: 1.0,
+//            constant: 10))
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

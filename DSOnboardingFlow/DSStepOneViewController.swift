@@ -21,7 +21,7 @@ class DSStepOneViewController: UIViewController {
     lazy var bigTextView: UILabel! = {
         let view = UILabel(frame: CGRectZero)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = "Hey Girl"
+        view.text = "Main Text 2"
         view.textColor = UIColor.whiteColor()
         view.textAlignment = .Center
         view.font = UIFont(name: "Helvetica Neue", size: 37.0)

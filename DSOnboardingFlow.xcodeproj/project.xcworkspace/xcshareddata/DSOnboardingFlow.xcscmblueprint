@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "31F523C166001D5A2F13687594279BB67FFF361E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "31F523C166001D5A2F13687594279BB67FFF361E" : 0,
+    "279DE65D5ACC47E9B67958B4ABE88FAAE3275310" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "0ADEA130-505D-40DA-98F5-DEAA98A6946B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "31F523C166001D5A2F13687594279BB67FFF361E" : "DSOnboardingFlow\/",
+    "279DE65D5ACC47E9B67958B4ABE88FAAE3275310" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "DSOnboardingFlow",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "DSOnboardingFlow.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/danstepanov\/DSOnboardingFlow.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "279DE65D5ACC47E9B67958B4ABE88FAAE3275310"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/danstepanov\/DSOnboardingFlow.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "31F523C166001D5A2F13687594279BB67FFF361E"
+    }
+  ]
+}

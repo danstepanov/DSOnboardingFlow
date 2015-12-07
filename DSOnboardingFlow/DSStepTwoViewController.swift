@@ -21,7 +21,7 @@ class DSStepTwoViewController: UIViewController {
     lazy var bigTextView: UILabel! = {
         let view = UILabel(frame: CGRectZero)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = "Hey Girl"
+        view.text = "Main Text 3"
         view.textColor = UIColor.whiteColor()
         view.textAlignment = .Center
         view.font = UIFont(name: "Helvetica Neue", size: 37.0)
@@ -29,17 +29,30 @@ class DSStepTwoViewController: UIViewController {
         return view
     }()
     
-    lazy var smallTextView: UILabel! = {
-        let view = UILabel(frame: CGRectZero)
+//    lazy var smallTextView: UILabel! = {
+//        let view = UILabel(frame: CGRectZero)
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.text = "This is a sample sentence. Please replace me with actual text. Thanks Bae."
+//        view.numberOfLines = 2
+//        view.textColor = UIColor.whiteColor()
+//        view.textAlignment = .Center
+//        view.font = UIFont(name: "Helvetica Neue", size: 15.0)
+//        
+//        return view
+//    }()
+
+    lazy var getStartedButton: UIButton! = {
+        let view = UIButton(frame: CGRectZero)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = "This is a sample sentence. Please replace me with actual text. Thanks Bae."
-        view.numberOfLines = 2
-        view.textColor = UIColor.whiteColor()
-        view.textAlignment = .Center
-        view.font = UIFont(name: "Helvetica Neue", size: 15.0)
+        view.setTitle("Get Started", forState: .Normal)
+        view.titleLabel?.textColor = UIColor.whiteColor()
+        view.titleLabel?.textAlignment = .Center
+        view.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 15.0)
+        view.addTarget(self, action: "getStartedButtonTouched:", forControlEvents: .TouchDown)
         
         return view
     }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,12 +61,15 @@ class DSStepTwoViewController: UIViewController {
         
         self.view.addSubview(imageView)
         self.view.addSubview(bigTextView)
-        self.view.addSubview(smallTextView)
+        self.view.addSubview(getStartedButton)
+//        self.view.addSubview(smallTextView)
         
         self.view.setNeedsUpdateConstraints()
 
     }
-
+    func getStartedButtonTouched(sender: AnyObject?) {
+        print("Get Started Button Touched")
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -63,7 +79,8 @@ class DSStepTwoViewController: UIViewController {
         
         imageViewConstraints()
         bigTextViewConstraints()
-        smallTextViewConstraints()
+//        smallTextViewConstraints()
+        getStartedButtonConstraints()
         super.updateViewConstraints()
     }
     
@@ -143,10 +160,47 @@ class DSStepTwoViewController: UIViewController {
             constant: 40))
     }
     
-    func smallTextViewConstraints() {
-        
+//    func smallTextViewConstraints() {
+//        
+//        self.view.addConstraint(NSLayoutConstraint(
+//            item: smallTextView,
+//            attribute: .CenterX,
+//            relatedBy: .Equal,
+//            toItem: self.view,
+//            attribute: .CenterX,
+//            multiplier: 1.0,
+//            constant: 0))
+//        
+//        self.view.addConstraint(NSLayoutConstraint(
+//            item: smallTextView,
+//            attribute: .Height,
+//            relatedBy: .Equal,
+//            toItem: nil,
+//            attribute: .NotAnAttribute,
+//            multiplier: 1.0,
+//            constant: 60))
+//        
+//        self.view.addConstraint(NSLayoutConstraint(
+//            item: smallTextView,
+//            attribute: .Width,
+//            relatedBy: .Equal,
+//            toItem: self.view,
+//            attribute: .Width,
+//            multiplier: 0.8,
+//            constant: 0))
+//        
+//        self.view.addConstraint(NSLayoutConstraint(
+//            item: smallTextView,
+//            attribute: .Top,
+//            relatedBy: .Equal,
+//            toItem: bigTextView,
+//            attribute: .Bottom,
+//            multiplier: 1.0,
+//            constant: 10))
+//    }
+        func getStartedButtonConstraints() {
         self.view.addConstraint(NSLayoutConstraint(
-            item: smallTextView,
+            item: getStartedButton,
             attribute: .CenterX,
             relatedBy: .Equal,
             toItem: self.view,
@@ -155,42 +209,31 @@ class DSStepTwoViewController: UIViewController {
             constant: 0))
         
         self.view.addConstraint(NSLayoutConstraint(
-            item: smallTextView,
+            item: getStartedButton,
             attribute: .Height,
             relatedBy: .Equal,
             toItem: nil,
             attribute: .NotAnAttribute,
             multiplier: 1.0,
-            constant: 60))
+            constant: 45))
         
         self.view.addConstraint(NSLayoutConstraint(
-            item: smallTextView,
+            item: getStartedButton,
             attribute: .Width,
             relatedBy: .Equal,
             toItem: self.view,
             attribute: .Width,
-            multiplier: 0.8,
+            multiplier: 1.0,
             constant: 0))
         
         self.view.addConstraint(NSLayoutConstraint(
-            item: smallTextView,
+            item: getStartedButton,
             attribute: .Top,
             relatedBy: .Equal,
             toItem: bigTextView,
             attribute: .Bottom,
             multiplier: 1.0,
-            constant: 10))
+            constant: 40))
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
