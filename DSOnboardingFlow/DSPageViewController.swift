@@ -33,7 +33,11 @@ class DSPageViewController: UIPageViewController, UIPageViewControllerDataSource
         return view
     }()
     
-    var index = 0
+    var index = 0 {
+        didSet {
+            print("current index: \(index)")
+        }
+    }
         
     var viewControllerArray: NSArray = [DSStepZeroViewController(),DSStepOneViewController(),DSStepTwoViewController()]
     
@@ -47,6 +51,13 @@ class DSPageViewController: UIPageViewController, UIPageViewControllerDataSource
         //Edit Page Control
 //        let pageControl = UIPageControl.appearance()
 //        pageControl.pageIndicatorTintColor = UIColor.redColor()
+        
+        for i in 0..<viewControllerArray.count {
+            // because NSArray has reference semantics, we can modify the
+            // view controller in-place / we don't need NSMutableArray.
+            let vc = viewControllerArray.objectAtIndex(i) as! UIViewController
+            vc.view!.tag = i
+        }
         
         // this sets the background color of the built-in paging dots
         view.backgroundColor = UIColor.clearColor()
@@ -68,13 +79,17 @@ class DSPageViewController: UIPageViewController, UIPageViewControllerDataSource
     
     func skipButtonTouched(sender : AnyObject?) {
         skipButton.alpha = 0
-        if index == 0 {
-            index = index + 2
-            setViewControllers([viewControllerArray.objectAtIndex(index) as! UIViewController], direction: .Forward, animated: true, completion: nil)
-        } else if index == 1 {
-            index = index + 1
-            setViewControllers([viewControllerArray.objectAtIndex(index) as! UIViewController], direction: .Forward, animated: true, completion: nil)
-        }
+        
+        let lastVC = viewControllerArray.lastObject as! UIViewController
+        setViewControllers([lastVC], direction: .Forward, animated: true, completion: nil)
+        
+//        if index == 0 {
+//            index = index + 2
+//            setViewControllers([viewControllerArray.objectAtIndex(index) as! UIViewController], direction: .Forward, animated: true, completion: nil)
+//        } else if index == 1 {
+//            index = index + 1
+//            setViewControllers([viewControllerArray.objectAtIndex(index) as! UIViewController], direction: .Forward, animated: true, completion: nil)
+//        }
     }
     
     override func updateViewConstraints() {
@@ -178,17 +193,27 @@ class DSPageViewController: UIPageViewController, UIPageViewControllerDataSource
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
 
-        if index == 0 {
-            skipButton.alpha = 1
-            index = index + 1
-            return viewControllerArray.objectAtIndex(index) as? UIViewController
-        } else if index == 1 {
-            skipButton.alpha = 0
-            index = index + 1
-            return viewControllerArray.objectAtIndex(index) as? UIViewController
-        } else {
+        // this was called `destinationIndex`, but I did not want to confuse it with the fact that
+        // it actually isn't going to be shown on screen (possibly) when this method is called.
+        let requestedIndex = viewController.view!.tag + 1
+        
+        if requestedIndex < 0 || requestedIndex >= viewControllerArray.count {
             return nil
+        } else {
+            return viewControllerArray.objectAtIndex(requestedIndex) as? UIViewController
         }
+
+//        if index == 0 {
+//            skipButton.alpha = 1
+//            index = index + 1
+//            return viewControllerArray.objectAtIndex(index) as? UIViewController
+//        } else if index == 1 {
+//            skipButton.alpha = 0
+//            index = index + 1
+//            return viewControllerArray.objectAtIndex(index) as? UIViewController
+//        } else {
+//            return nil
+//        }
 
 //        if viewController.isKindOfClass(DSStepZeroViewController) {
 //            // 0 -> 1
@@ -208,17 +233,26 @@ class DSPageViewController: UIPageViewController, UIPageViewControllerDataSource
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
-        if index == 2 {
-            skipButton.alpha = 1
-            index = index - 1
-            return viewControllerArray.objectAtIndex(index) as? UIViewController
-        } else if index == 1 {
-            skipButton.alpha = 1
-            index = index - 1
-            return viewControllerArray.objectAtIndex(index) as? UIViewController
-        } else {
+        let destinationIndex = viewController.view!.tag - 1
+        
+        if destinationIndex < 0 || destinationIndex >= viewControllerArray.count {
             return nil
+        } else {
+            return viewControllerArray.objectAtIndex(destinationIndex) as? UIViewController
         }
+        
+//        if index == 2 {
+//            skipButton.alpha = 1
+//            index = index - 1
+//            return viewControllerArray.objectAtIndex(index) as? UIViewController
+//        } else if index == 1 {
+//            skipButton.alpha = 1
+//            index = index - 1
+//            return viewControllerArray.objectAtIndex(index) as? UIViewController
+//        } else {
+//            return nil
+//        }
+
 //        if viewController.isKindOfClass(DSStepTwoViewController) {
 //            // 2 -> 1
 //            skipButton.alpha = 1
@@ -235,15 +269,21 @@ class DSPageViewController: UIPageViewController, UIPageViewControllerDataSource
         
     }
     
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if completed {
+            index = presentationIndexForPageViewController(pageViewController)
+        }
+    }
     
     // Enables pagination dots
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
         return viewControllerArray.count
     }
     
-    // This only gets called once, when setViewControllers is called
+    // This only gets called _whenever_ setViewControllers is called, sometimes only once in viewDidLoad.
+    // Also used by this-own class's `pageViewController(_, didFinishAnimating:_, ...)`
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return index
+        // if viewControllers array or the `.first` object is nil, return 0
+        return pageViewController.viewControllers?.first?.view!.tag ?? 0
     }
-    
 }
