@@ -196,11 +196,14 @@ class DSPageViewController: UIPageViewController, UIPageViewControllerDataSource
 
         if viewController.isKindOfClass(DSStepZeroViewController) {
             // 0 -> 1
+            skipButton.alpha = 1
             return getStepOne()
         } else if viewController.isKindOfClass(DSStepOneViewController) {
             // 1 -> 2
+            skipButton.alpha = 1
             return getStepTwo()
         } else {
+            skipButton.alpha = 0
             // 2 -> end of the road
             return nil
         }
@@ -224,11 +227,14 @@ class DSPageViewController: UIPageViewController, UIPageViewControllerDataSource
 //        }
         if viewController.isKindOfClass(DSStepTwoViewController) {
             // 2 -> 1
+            skipButton.alpha = 1
             return getStepOne()
         } else if viewController.isKindOfClass(DSStepOneViewController) {
             // 1 -> 0
+            skipButton.alpha = 1
             return getStepZero()
         } else {
+            skipButton.alpha = 1
             // 0 -> end of the road
             return nil
         }
