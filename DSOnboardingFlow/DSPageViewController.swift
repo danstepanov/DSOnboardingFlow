@@ -73,14 +73,20 @@ class DSPageViewController: UIPageViewController, UIPageViewControllerDataSource
         
         // This is the starting point. Start with step zero.
         setViewControllers([firstViewController], direction: .Forward , animated: true, completion: nil)
+        index = 0 // see `skipButtonTouched` for why this is set here.
         
         self.view.setNeedsUpdateConstraints()
     }
     
     func skipButtonTouched(sender : AnyObject?) {
+        // you could probably get rid of this after moving the code that sets
+        // the alpha to the `didSet` of the index property (see top of class).
         skipButton.alpha = 0
         
         let lastVC = viewControllerArray.lastObject as! UIViewController
+        // we have to set the index ourselves, since we're changing it.
+        // The UIPageViewController delegate methods only get called when the user switches pages.
+        index = viewControllerArray.count - 1
         setViewControllers([lastVC], direction: .Forward, animated: true, completion: nil)
         
 //        if index == 0 {
