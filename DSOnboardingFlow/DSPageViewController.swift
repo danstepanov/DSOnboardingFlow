@@ -61,24 +61,20 @@ class DSPageViewController: UIPageViewController, UIPageViewControllerDataSource
         UIApplication.sharedApplication().keyWindow?.bringSubviewToFront(header)
         
         // This is the starting point. Start with step zero.
-//        setViewControllers([firstViewController], direction: .Forward , animated: true, completion: nil)
-        
-        setViewControllers([getStepZero()], direction: .Forward , animated: true, completion: nil)
+        setViewControllers([firstViewController], direction: .Forward , animated: true, completion: nil)
         
         self.view.setNeedsUpdateConstraints()
     }
     
     func skipButtonTouched(sender : AnyObject?) {
         skipButton.alpha = 0
-//        if index == 0 {
-//            index = index + 2
-//            setViewControllers([viewControllerArray.objectAtIndex(index) as! UIViewController], direction: .Forward, animated: true, completion: nil)
-//        } else if index == 1 {
-//            index = index + 1
-//            setViewControllers([viewControllerArray.objectAtIndex(index) as! UIViewController], direction: .Forward, animated: true, completion: nil)
-//        }
-        setViewControllers([getStepTwo()], direction: .Forward, animated: true, completion: nil)
-        
+        if index == 0 {
+            index = index + 2
+            setViewControllers([viewControllerArray.objectAtIndex(index) as! UIViewController], direction: .Forward, animated: true, completion: nil)
+        } else if index == 1 {
+            index = index + 1
+            setViewControllers([viewControllerArray.objectAtIndex(index) as! UIViewController], direction: .Forward, animated: true, completion: nil)
+        }
     }
     
     override func updateViewConstraints() {
@@ -92,17 +88,17 @@ class DSPageViewController: UIPageViewController, UIPageViewControllerDataSource
         // Dispose of any resources that can be recreated.
     }
     
-    func getStepZero() -> DSStepZeroViewController {
-        return DSStepZeroViewController() 
-    }
-    
-    func getStepOne() -> DSStepOneViewController {
-        return DSStepOneViewController()
-    }
-    
-    func getStepTwo() -> DSStepTwoViewController {
-        return DSStepTwoViewController()
-    }
+//    func getStepZero() -> DSStepZeroViewController {
+//        return DSStepZeroViewController() 
+//    }
+//    
+//    func getStepOne() -> DSStepOneViewController {
+//        return DSStepOneViewController()
+//    }
+//    
+//    func getStepTwo() -> DSStepTwoViewController {
+//        return DSStepTwoViewController()
+//    }
     
     func headerConstraints() {
         self.view.addConstraint(NSLayoutConstraint(
@@ -182,76 +178,72 @@ class DSPageViewController: UIPageViewController, UIPageViewControllerDataSource
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
 
-//        if index == 0 {
-//            skipButton.alpha = 1
-//            index = index + 1
-//            return viewControllerArray.objectAtIndex(index) as? UIViewController
-//        } else if index == 1 {
-//            skipButton.alpha = 0
-//            index = index + 1
-//            return viewControllerArray.objectAtIndex(index) as? UIViewController
-//        } else {
-//            return nil
-//        }
-
-        if viewController.isKindOfClass(DSStepZeroViewController) {
-            // 0 -> 1
+        if index == 0 {
             skipButton.alpha = 1
-            return getStepOne()
-        } else if viewController.isKindOfClass(DSStepOneViewController) {
-            // 1 -> 2
-            skipButton.alpha = 1
-            return getStepTwo()
-        } else {
+            index = index + 1
+            return viewControllerArray.objectAtIndex(index) as? UIViewController
+        } else if index == 1 {
             skipButton.alpha = 0
-            // 2 -> end of the road
+            index = index + 1
+            return viewControllerArray.objectAtIndex(index) as? UIViewController
+        } else {
             return nil
         }
+
+//        if viewController.isKindOfClass(DSStepZeroViewController) {
+//            // 0 -> 1
+//            skipButton.alpha = 1
+//            return getStepOne()
+//        } else if viewController.isKindOfClass(DSStepOneViewController) {
+//            // 1 -> 2
+//            skipButton.alpha = 1
+//            return getStepTwo()
+//        } else {
+//            skipButton.alpha = 0
+//            // 2 -> end of the road
+//            return nil
+//        }
     }
 
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
-//        if index == 2 {
-//            skipButton.alpha = 1
-//            index = index - 1
-//            return viewControllerArray.objectAtIndex(index) as? UIViewController
-//        }
-//        else if index == 1 {
-//            skipButton.alpha = 1
-//            index = index - 1
-//            return viewControllerArray.objectAtIndex(index) as? UIViewController
-//        }
-//        else {
-//            return nil
-//        }
-        if viewController.isKindOfClass(DSStepTwoViewController) {
-            // 2 -> 1
+        if index == 2 {
             skipButton.alpha = 1
-            return getStepOne()
-        } else if viewController.isKindOfClass(DSStepOneViewController) {
-            // 1 -> 0
+            index = index - 1
+            return viewControllerArray.objectAtIndex(index) as? UIViewController
+        } else if index == 1 {
             skipButton.alpha = 1
-            return getStepZero()
+            index = index - 1
+            return viewControllerArray.objectAtIndex(index) as? UIViewController
         } else {
-            skipButton.alpha = 1
-            // 0 -> end of the road
             return nil
         }
+//        if viewController.isKindOfClass(DSStepTwoViewController) {
+//            // 2 -> 1
+//            skipButton.alpha = 1
+//            return getStepOne()
+//        } else if viewController.isKindOfClass(DSStepOneViewController) {
+//            // 1 -> 0
+//            skipButton.alpha = 1
+//            return getStepZero()
+//        } else {
+//            skipButton.alpha = 1
+//            // 0 -> end of the road
+//            return nil
+//        }
         
     }
     
     
     // Enables pagination dots
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-//        return viewControllerArray.count
-        return 3
+        return viewControllerArray.count
     }
     
     // This only gets called once, when setViewControllers is called
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-//        return index
-            return 0
+        return index
     }
     
 }
