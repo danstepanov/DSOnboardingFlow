@@ -50,6 +50,7 @@ class DSPageViewController: UIPageViewController, UIPageViewControllerDataSource
         
         //Edit Page Control
 //        let pageControl = UIPageControl.appearance()
+//        pageControl.frame = CGRectMake(0, 0, 150, 37)
 //        pageControl.pageIndicatorTintColor = UIColor.redColor()
         
         for i in 0..<viewControllerArray.count {
@@ -162,11 +163,11 @@ class DSPageViewController: UIPageViewController, UIPageViewControllerDataSource
     func skipButtonConstraints() {
         self.view.addConstraint(NSLayoutConstraint(
             item: skipButton,
-            attribute: .Left,
+            attribute: .Right,
             relatedBy: .Equal,
             toItem: self.view,
-            attribute: .Left,
-            multiplier: 1.0,
+            attribute: .Right,
+            multiplier: 0.95,
             constant: 0))
         
         self.view.addConstraint(NSLayoutConstraint(
@@ -193,7 +194,7 @@ class DSPageViewController: UIPageViewController, UIPageViewControllerDataSource
             relatedBy: .Equal,
             toItem: self.view,
             attribute: .Bottom,
-            multiplier: 0.2,
+            multiplier: 0.025,
             constant: 0))
     }
     
